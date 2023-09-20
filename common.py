@@ -26,7 +26,7 @@ image = (
     )
     .apt_install("git")
     .pip_install(
-        "llama-recipes @ git+https://github.com/Llama2D/llama-recipes.git@fc8c408e553335b8e3717fb2bb9e59402ff8110d",
+        "llama-recipes @ git+https://github.com/Llama2D/llama-recipes.git@e3e2b91dbbbc5fffce6875292d7f5ac0b53b5ed2",
         extra_index_url="https://download.pytorch.org/whl/nightly/cu118",
         pre=True,
     )
