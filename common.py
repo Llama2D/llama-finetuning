@@ -26,15 +26,17 @@ image = (
     )
     .apt_install("git")
     .pip_install(
-        "llama-recipes @ git+https://github.com/Llama2D/llama-recipes.git@e3e2b91dbbbc5fffce6875292d7f5ac0b53b5ed2",
+        "llama-recipes @ git+https://github.com/Llama2D/llama-recipes.git@14c698001ee6fb840197e676f48f555d3b733b60",
         extra_index_url="https://download.pytorch.org/whl/nightly/cu118",
         pre=True,
     )
     .pip_install("huggingface_hub==0.17.1", "hf-transfer==0.1.3", "scipy")
+    .pip_install("wandb")
     .env(dict(HUGGINGFACE_HUB_CACHE="/pretrained", HF_HUB_ENABLE_HF_TRANSFER="1"))
+    
 )
 
-stub = Stub("llama-finetuning", image=image, secrets=[Secret.from_name("huggingface")])
+stub = Stub("llama-finetuning", image=image, secrets=[Secret.from_name("huggingface"), Secret.from_name("wandb")])
 
 # Download pre-trained models into this volume.
 stub.pretrained_volume = Volume.persisted("example-pretrained-vol")
